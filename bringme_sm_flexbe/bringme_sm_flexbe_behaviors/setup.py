@@ -14,10 +14,10 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='phil',
-    maintainer_email='philsplus@gmail.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    maintainer='Valentin Cardenas Keith',
+    maintainer_email='ai-robot-book@googlegroups.com',
+    description='ROS2 package for Bring Me task state machine using FlexBE',
+    license='Apache License 2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
