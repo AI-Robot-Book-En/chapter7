@@ -91,4 +91,23 @@ Bring meタスクのためのFlexBEによるステートマシンのプログラ
 ## Behaviorsの一覧
 
 * [bringme_action_behavior_sm.py](bringme_sm_flexbe_behaviors/bringme_sm_flexbe_behaviors/bringme_action_behavior_sm.py):
-  * 音声認識・ナビゲーション・物体認識・物体把持の状態を含めたBringmeタスクのためのステートマシン 
+  * 音声認識・ナビゲーション・物体認識・物体把持の状態を含めたBringmeタスクのためのステートマシン
+
+
+## ヘルプ
+
+## 著者
+
+萩原 良信
+
+
+## 履歴
+
+
+## ライセンス
+
+Copyright (c) 2025, HAGIWARA Yoshinobu, VALENTIN CARDENAS Keith and OKUMA Yuki.  
+All rights reserved.  
+This project is licensed under the Apache License 2.0 license found in the LICENSE file in the root directory of this project.
+
+## 参考文献
