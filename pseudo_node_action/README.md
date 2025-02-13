@@ -8,25 +8,23 @@ Bring meタスクにおける，音声，ナビゲーション，ビジョン，
 
 - [bringme_sm_flexbe](../bringme_sm_flexbe)を参照してください．
 
-
 ## ヘルプ
-
 
 ## 著者
 
-萩原　良信
+萩原 良信
 
 
 ## 履歴
 
-- 2023-05-29: Action化
-
 
 ## ライセンス
 
-Copyright (c) 2022-2025, Yoshinobu Hagiwara and Masaki Ito
-All rights reserved.
-This project is licensed under the Apache-2.0 license found in the LICENSE file in the root directory of this project.
+Copyright (c) 2025, HAGIWARA Yoshinobu, VALENTIN CARDENAS Keith and OKUMA Yuki.  
+All rights reserved.  
+This project is licensed under the Apache License 2.0 license found in the LICENSE file in the root directory of this project.
+
+## 参考文献
 
 
 ## 参考文献
