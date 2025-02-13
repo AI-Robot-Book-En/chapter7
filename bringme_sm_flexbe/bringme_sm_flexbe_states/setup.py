@@ -8,7 +8,7 @@ PACKAGE_NAME = 'bringme_sm_flexbe_states'
 
 setup(
     name=PACKAGE_NAME,
-    version='0.0.1',
+    version='2.0.0',
     packages=find_packages(),
     data_files=[
         ('share/ament_index/resource_index/packages',
