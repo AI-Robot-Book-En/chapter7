@@ -8,7 +8,7 @@ PACKAGE_NAME = 'sample_sm_flexbe_states'
 
 setup(
     name=PACKAGE_NAME,
-    version='0.0.1',
+    version='2.0.0',
     packages=find_packages(),
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -20,10 +20,10 @@ setup(
 
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='TODO',
-    maintainer_email='TODO@TODO.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    maintainer='Valentin Cardenas Keith',
+    maintainer_email='ai-robot-book@googlegroups.com',
+    description='ROS2 package for a simple state machine using FlexBE',
+    license='Apache License 2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
