@@ -1,20 +1,15 @@
-# 第７章　プランニング（改訂第2版）
-## 概要
+# Chapter 7 Planning
+## Overview
 
-ROS 2とPythonで作って学ぶAIロボット入門 改訂第2版（出村・萩原・升谷・タン著，講談社）第７章のサンプルプログラムと補足情報などを掲載しています．
+This page provides sample programs and supplementary information for Chapter 7.
 
-> [!IMPORTANT]
-> `bringme_sm_smach`・`pseudo_node_service`・`sample_sm_smach`というリポジトリをサポートしません．
-そちらのソースコードについては，[AI Robot Book 題7章　プラニング](https://github.com/AI-Robot-Book/chapter7)の方にIssueを立ててください．
+## Installation Guide
 
+This section explains the procedure to install this repository.
 
-## インストール方法
+### Environment Setup for `Smach` and `FlexBE`
 
-本リポジトリをインストールするための手順を説明します．
-
-### `Smach`や`FlexBE`のための環境構築
-
-1. 必要なROS関連のパッケージをインストールします．
+1. Install the required ROS-related packages.
   ```console
   $ sudo apt-get update
   $ sudo apt-get install -y ros-humble-smach ros-humble-executive-smach
