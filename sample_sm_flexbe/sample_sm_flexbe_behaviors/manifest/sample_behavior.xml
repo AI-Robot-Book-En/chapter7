@@ -2,12 +2,13 @@
 
 <behavior name="Sample Behavior">
 
-    <executable package_path="sample_sm_flexbe_behaviors.sample_behavior_sm" class="SampleBehaviorSM" />
-    <tagstring>sample</tagstring>
+    <executable package_path="sample_sm_flexbe_behaviors.sample_behavior_sm" class="AdvancedSampleStateMachineSM" />
+    <tagstring></tagstring>
     <author>Keith Valentin</author>
     <date>Tue May 28 2024</date>
     <description>
-        FlexBEの基本を理解するためのステートマシンの一例
+        In this state machine, a new behavior is created by extending the previous
+        sample to include a grasping state.
     </description>
 
 

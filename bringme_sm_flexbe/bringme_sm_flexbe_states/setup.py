@@ -20,7 +20,7 @@ setup(
 
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='Valentin Cardenas Keith',
+    maintainer='Jiahao Sim',
     maintainer_email='ai-robot-book@googlegroups.com',
     description='ROS2 package for Bring Me task state machine using FlexBE',
     license='Apache License 2.0',

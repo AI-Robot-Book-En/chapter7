@@ -24,34 +24,35 @@ from time import sleep
 
 class SearchState(EventState):
     """
-    SearchStateという状態はスイーツを探すことを目標としています．
-    ユーザーがこれまでどれぐらい食べたかによって，食べるか食べないかを判定します．
+    The `SearchState` represents a behavior in which the robot searches for snacks.
+    Based on how many snacks the user has already eaten, the robot decides whether
+    to continue searching or stop.
 
-    出力
-    <= succeeded       スイーツが見つけたら，検出成功するという結果を出力します
-    <= finished        スイーツでお腹いっぱいになったら，検索終了の結果を出力します
-    <= failed          何らかの問題で，検索を失敗した場合，失敗したという結果を出力します
+    Outputs
+    <= succeeded       Outputs a result indicating that the search has succeeded when snacks are found.
+    <= finished        Outputs a result indicating that the search has finished when the user is full.
+    <= failed          Outputs a result indicating that the search has failed due to some issue.
 
     Userdata
-    ># eat_counter  int ユーザーがこれまでまで食べたスイーツの数       (int型) (Input)
-    ># max_eat      int ユーザーがお腹いっぱいになるまでのスイーツの数 (int型) (Input)
+    ># eat_counter  int The number of snacks the user has eaten so far (Input)
+    ># max_eat      int The number of snacks until the user is full (Input)
     """
 
     def __init__(self):
-        """状態の結果，入力キーを定義します．"""
+        """Define the outcomes and input keys for this state."""
         super().__init__(outcomes=['succeeded', 'finished'],
                          input_keys=['eat_counter', 'max_eat'])
 
     def execute(self, userdata):
-        # search処理を開始します
+        # Execute the searching process
         sleep(1)
-        Logger.loginfo('スイーツを探索しています') # 探索の状態にいることをログに残します
+        Logger.loginfo('Searching for snacks') # Log that the robot is in the searching state
 
         if userdata.eat_counter < userdata.max_eat:
-            Logger.loginfo('スイーツを見つけました！') # 探索の状態へ訪れた回数が3回未満の場合
+            Logger.loginfo('Snacks found!') # Log when snacks are found
 
-            return 'succeeded' # 'succeeded'という結果を返します
+            return 'succeeded' # Return the result 'succeeded'
         else:
-            Logger.loginfo('もうお腹いっぱいです・・・') # 探索の状態へ訪れた回数が3回になった場合
+            Logger.loginfo('I am already full...') # Log when the user is full
 
-            return 'finished' # 'finished'という結果を返します
+            return 'finished' # Return the result 'finished'

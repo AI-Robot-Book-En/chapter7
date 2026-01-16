@@ -20,9 +20,9 @@ setup(
 
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='Valentin Cardenas Keith',
+    maintainer='Jiahao Sim',
     maintainer_email='ai-robot-book@googlegroups.com',
-    description='ROS2 package for a simple state machine using FlexBE',
+    description='ROS2 package for a advanced simple state machine using FlexBE',
     license='Apache License 2.0',
     tests_require=['pytest'],
     entry_points={

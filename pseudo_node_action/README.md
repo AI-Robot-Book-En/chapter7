@@ -1,32 +1,28 @@
 # pseudo_node_action
 
-7.4節のサンプルプログラム（疑似ノード）  
-Bring meタスクにおける，音声，ナビゲーション，ビジョン，マニピュレーションのAction化にした疑似ノードのサンプルプログラム
+Sample programs (pseudo-nodes) from Section 7.4
+These are sample pseudo-node programs in which speech, navigation, vision, and manipulation for the Bring me task are implemented using ROS 2 Actions.
 
 
-## 実行
+## Execution
 
-- [bringme_sm_flexbe](../bringme_sm_flexbe)を参照してください．
+- Please refer to [bringme_sm_flexbe](../bringme_sm_flexbe).
 
-## ヘルプ
+## Help
 
-## 著者
+## Authors
 
-萩原 良信
-
-
-## 履歴
+HAGIWARA Yoshinobu
 
 
-## ライセンス
+## History
 
-Copyright (c) 2025, HAGIWARA Yoshinobu, VALENTIN CARDENAS Keith and OKUMA Yuki.  
+
+## License
+
+Copyright (c) 2025, HAGIWARA Yoshinobu, VALENTIN CARDENAS Keith and SIM Jiahao.  
 All rights reserved.  
 This project is licensed under the Apache License 2.0 license found in the LICENSE file in the root directory of this project.
 
-## 参考文献
-
-
-## 参考文献
-
+## References
 - [ROS 2 Action Manual](https://design.ros2.org/articles/actions.html)

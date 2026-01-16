@@ -1,56 +1,57 @@
 # bringme_sm_flexbe
 
-7.4節のサンプルプログラム  
-Bring meタスクのためのFlexBEによるステートマシンのプログラム
+Sample programs from Section 7.4
+This repository provides a FlexBE-based state machine implementation for the Bring me task.
 
 
-## 実行
+## Execution
 
-1. Bringmeタスクのための必要なActionServerを実行するために，[bringme_nodes.launch.py](../pseudo_node_action/launch/bringme_nodes.launch.py)というlaunchファイルを実行します．
+1. To run the required Action servers for the Bring-me task, launch the file [bringme_nodes.launch.py](../pseudo_node_action/launch/bringme_nodes.launch.py).
   ```console
   $ ros2 launch pseudo_node_action bringme.launch.py
   ```
 
-2. `FlexBE WebUI`を実行します．
+2. Launch the `FlexBE WebUI`.
   ```console
   $ ros2 launch flexbe_webui flexbe_full.launch.py
 
 > [!NOTE]
-> `FlexBe WebUI`が起動されない場合は，依存パッケージのインストールされていない可能性があります．
-その際，`flexbe_webui`の中で，`pip3 install -r requires.txt`を実行してください．
+> If the `FlexBe WebUI` does not start, some dependent packages may not be installed.
+In that case, run `pip3 install -r requires.txt` inside the `flexbe_webui` directory.
   ```
 
-3. `Behavior Dashboard`が表示されます．
+3. The `Behavior Dashboard` will be displayed.
 ![](../docs/bringme_sm_flexbe/01_behavior_dashboard.png)
 
-4. `Load Behavior`を押し，右側にBehavior一覧が表示されます．
+4. Click `Load Behavior` to display the list of available behaviors on the right-hand side.
 ![](../docs/bringme_sm_flexbe/02_load_behavior.png)
 
-5. その中から，`Bringme Action Behavior`というBehaviorを選択します．
+5. From the list, select the behavior named `Bringme Action Behavior`.
 ![](../docs/bringme_sm_flexbe/03_loaded_behavior.png)
 
-6. `Statemachine Editor`に移動して，ステートマシンの状態を確認します．
+6. Move to the `Statemachine Editor` and inspect the structure of the state machine.
 ![](../docs/bringme_sm_flexbe/04_statemachine_editor.png)
 
-7. `Runtime Control`に移動して，ステートマシンを実行します．
-そのために，まず`listen_time`という値を設定します．
+7. Move to `Runtime Control` to execute the state machine.
+First, set the value of `listen_time`.
 
 > [!NOTE]
-> `listen_time`は音声認識の起動時間のことを表します．その値を自由に変えられます．
+> `listen_time`represents the activation duration of speech recognition.
+This value can be freely adjusted.
 
 ![](../docs/bringme_sm_flexbe/05_runtime_control.png)
 
-7. 次に，`Start Execution`を押して，状態が開始されます．
+7. Next, click `Start Execution` to begin execution.
 
-| Voiceステート | Navigationステート |
+| Voice State | Navigation State |
 | --- | --- |
 | ![](../docs/bringme_sm_flexbe/06_voice.png) | ![](../docs/bringme_sm_flexbe/07_navigation.png) |
 
-| Visionステート | Manipulationステート |
+| Vision State | Manipulation State |
 | --- | --- |
 | ![](../docs/bringme_sm_flexbe/08_vision.png) | ![](../docs/bringme_sm_flexbe/09_manipulation.png) |
 
-8. 実行ターミナルの結果の一例．
+8. Example output from the execution terminal:
   ```console
   [00:37:59] Onboard engine is ready.
   [00:38:00] --> Mirror - received updated structure with checksum id = 741633216
@@ -58,14 +59,14 @@ Bring meタスクのためのFlexBEによるステートマシンのプログラ
   [00:38:00] --> Preparing new behavior...
   [00:38:00] Executing mirror ...
   [00:38:00] Onboard Behavior Engine starting [Bringme Action Behavior : 741633216]
-  [00:38:11] 音声認識の結果: bring me a cup from the kitchen
-  [00:38:15] ナビゲーションが失敗しました
-  [00:38:18] ナビゲーションが失敗しました
-  [00:38:28] ナビゲーションの結果: reached
-  [00:38:38] 物体認識の結果: found
-  [00:38:39] 物体把持が失敗しました
-  [00:38:49] 物体認識の結果: found
-  [00:38:59] 物体把持の結果: reached
+  [00:38:11] Speech recognition result: bring me a cup from the kitchen
+  [00:38:15] Navigation failed
+  [00:38:18] Navigation failed
+  [00:38:28] Navigation result: reached
+  [00:38:38] Object recognition result: found
+  [00:38:39] Object grasping failed
+  [00:38:49] Object recognition result: found
+  [00:38:59] Object grasping result: reached
   [00:38:59] PreemptableStateMachine 'Bringme Action Behavior' spin() - done with outcome=finished
   [00:39:00] No behavior active.
   [00:39:00] Onboard engine is ready.
@@ -74,40 +75,40 @@ Bring meタスクのためのFlexBEによるステートマシンのプログラ
   ```
 
 
-## Statesの一覧
+## List of States
 
 * [voice_action_state.py](bringme_sm_flexbe_states/bringme_sm_flexbe_states/voice_action_state.py):
-  * 音声認識の状態の実装
+  * Implementation of the speech recognition state
 
 * [navigation_action_state.py](bringme_sm_flexbe_states/bringme_sm_flexbe_states/navigation_action_state.py):
-  * ナビゲーションの状態の実装
+  * Implementation of the navigation state
 
 * [vision_action_state.py](bringme_sm_flexbe_states/bringme_sm_flexbe_states/vision_action_state.py):
-  * 物体認識の状態の実装
+  * Implementation of the object recognition state
 
 * [manipulation_action_state.py](bringme_sm_flexbe_states/bringme_sm_flexbe_states/manipulation_action_state.py):
-  * 物体把持の状態の実装
+  * Implementation of the object grasping state
 
-## Behaviorsの一覧
+## List of Behaviors
 
 * [bringme_action_behavior_sm.py](bringme_sm_flexbe_behaviors/bringme_sm_flexbe_behaviors/bringme_action_behavior_sm.py):
-  * 音声認識・ナビゲーション・物体認識・物体把持の状態を含めたBringmeタスクのためのステートマシン
+  * State machine for the Bring me task, including speech recognition, navigation, object recognition, and object grasping states
 
 
-## ヘルプ
+## Help
 
-## 著者
+## Authors
 
-萩原 良信
-
-
-## 履歴
+HAGIWARA Yoshinobu
 
 
-## ライセンス
+## History
 
-Copyright (c) 2025, HAGIWARA Yoshinobu, VALENTIN CARDENAS Keith and OKUMA Yuki.  
+
+## License
+
+Copyright (c) 2025, HAGIWARA Yoshinobu, VALENTIN CARDENAS Keith and SIM Jiahao.  
 All rights reserved.  
 This project is licensed under the Apache License 2.0 license found in the LICENSE file in the root directory of this project.
 
-## 参考文献
+## References

@@ -1,50 +1,50 @@
 # ファイル名：sample_sm.py
 
-import rclpy #[*] PythonからROS2を使用するためのモジュールを読み込みます．
+import rclpy #[*] Import the module that enables Python to interface with ROS 2.
 from rclpy.node import Node
-import smach #[*] ステートマシーンを作成するためのモジュールです．
+import smach #[*] Import the module for creating state machines.
 
 
-# 探索の状態を定義します．
+# Define the search state.
 class Search(smach.State):
     def __init__(self, _node):
-        smach.State.__init__(self, outcomes=['succeeded', 'finished']) #[*] 探索の状態における結果を事前に定義します．
-        self.counter = 0 #[*] 何回この状態に到達したのかをカウントする変数です．
-        self.logger = _node.get_logger() #[*] ロガーを定義します．
+        smach.State.__init__(self, outcomes=['succeeded', 'finished']) #[*] Predefine the possible outcomes of the Search state.
+        self.counter = 0 #[*] Variable to count how many times this state has been executed.
+        self.logger = _node.get_logger() #[*] Define a logger instance.
 
     def execute(self, userdata):
-        self.logger.info('探索中です') #[*] 探索の状態にいることをログに残します．
+        self.logger.info('Searching...') #[*] Log that the robot is in the Search state.
         if self.counter < 3:
-            self.logger.info('スイーツを見つけました！') #[*] 探索の状態へ訪れた回数が3回未満の場合
+            self.logger.info('Found a snack!') #[*] If the state has been executed less than 3 times
             self.counter += 1
-            return 'succeeded' #[*] 'succeeded'という結果を返します．
+            return 'succeeded' #[*] Return the result 'succeeded'.
         else:
-            self.logger.info('お腹いっぱいです・・・') #[*] 探索の状態へ訪れた回数が3回になった場合
-            return 'finished' #[*] 'finished'という結果を返します．
+            self.logger.info('I am full...') #[*] If the state has been executed 3 times
+            return 'finished' #[*] Return the result 'finished'.
 
-        
-# 食事の状態を定義します．
+
+# Define the eat state.
 class Eat(smach.State):
     def __init__(self, _node):
-        smach.State.__init__(self, outcomes=['done']) #[*] 食事の状態における結果を事前に定義します．
-        self.logger = _node.get_logger() #[*] ロガーを定義します．
+        smach.State.__init__(self, outcomes=['done']) #[*] Predefine the possible outcomes of the Eat state.
+        self.logger = _node.get_logger() #[*] Define a logger instance.
 
     def execute(self, userdata):
-        self.logger.info('食べてます！') #[*] 食事の状態にいることをログに残します．
-        return 'done' #[*] 'done'という結果を返します．
+        self.logger.info('Eating...') #[*] Log that the robot is in the Eat state.
+        return 'done' #[*] Return the result 'done'.
 
 
-# ステートマシーンを実行するノードを定義します．
+# Define the state machine execution node.
 class StateMachine(Node):
     def __init__(self):
-        super().__init__('state_machine') #[*] ノード名をstate_machineとして登録します．
+        super().__init__('state_machine') #[*] Register the node with the name state_machine.
 
     def execute(self):
-        # Smachステートマシーンを作成
+        # Create the Smach state machine
         sm = smach.StateMachine(outcomes=['end'])
-        # コンテナを開く
-        with sm: #[*] 状態同士のつながりを定義します．
-            # コンテナに状態を追加
+        # Open the container
+        with sm: #[*] Define the transitions between states.
+            # Add states to the container
             smach.StateMachine.add(
                 'SEARCH', Search(self),
                 transitions={'succeeded': 'EAT', 'finished': 'end'})
@@ -58,6 +58,6 @@ class StateMachine(Node):
 
 
 def main():
-    rclpy.init() #[*] rclpyを通したrosのコミュニケーションが行えるようにします．
-    node = StateMachine() #[*] ステートマシーンのノードを初期化します．
-    node.execute() #[*] ステートマシーンを実行します．
+    rclpy.init() #[*] Initialize ROS 2 communication through rclpy.
+    node = StateMachine() #[*] Initialize the state machine node.
+    node.execute() #[*] Execute the state machine.

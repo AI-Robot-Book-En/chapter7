@@ -25,28 +25,28 @@ from time import sleep
 
 class GraspState(EventState):
     """
-    GraspStateという状態はスイーツを把持することを目標としています．
+    The `GraspState` represents a state where the robot attempts to grasp a snack.
 
-    出力
-    <= succeeded       見つけたスイーツに対して，把持成功するという結果を出力します
-    <= failed          何らかの問題で，把持を失敗した場合，失敗したという結果を出力します
+    Outputs
+    <= succeeded       Indicates that the robot successfully grasped the found snack.
+    <= failed          Indicates that the robot failed to grasp the snack due to some issue.
     """
 
     def __init__(self):
-        """状態の結果，入力キーを定義します．"""
+        """Defines the outcomes and input keys for this state."""
         super().__init__(outcomes=['succeeded', 'failed'])
 
     def execute(self, userdata):
-        # grasp処理を開始します
-        sleep(1) # 処理を可視化するために，1秒停止します
-        Logger.loginfo('スイーツを把持してみます') # 探索の状態にいることをログに残します
+        # Execute the grasping process
+        sleep(1)  # Pause for 1 second to visualize the process
+        Logger.loginfo('Attempting to grasp the snack') # Log that the robot is in the grasping state
         
-        prob = random.random() # [0,1]の値を抽出します
+        prob = random.random() # Generate a random value between [0, 1]
         if 0.5 > prob:
-            Logger.loginfo('スイーツを把持できました！') # 状態Graspが成功した場合
+            Logger.loginfo('Successfully grasped the snack!') # Log when the grasp succeeds
 
-            return 'succeeded' # 'succeeded'という結果を返します
+            return 'succeeded' # Return the result 'succeeded'
         else:
-            Logger.loginfo('スイーツを把持できなかった・・・もう一度やってみます！') # 状態Graspが失敗した場合
+            Logger.loginfo('Failed to grasp the snack... Trying again!') # Log when the grasp fails
 
-            return 'failed' # 'finished'という結果を返します
+            return 'failed' # Return the result 'failed'

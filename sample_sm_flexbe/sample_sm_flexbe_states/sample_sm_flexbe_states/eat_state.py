@@ -24,28 +24,28 @@ from time import sleep
 
 class EatState(EventState):
     """
-    EatStateという状態は前の状態に見つけたスナックを食べることを目標とします．
-    ユーザーがこれまで食べたスナックの数を考慮せず，ランダムに食べるか食べないかを判定します．
+    The `EatState` represents a state where the robot aims to eat a snack that was found in the previous state.
+    It determines randomly whether to eat or not, regardless of how many snacks the user has already eaten.
 
-    出力
-    <= succeeded       Eat状態を終了したことを出力します
+    Outputs
+    <= succeeded       Indicates that the Eat state has finished execution.
 
     Userdata
-    ># eat_counter  int ユーザーがこれまでまで食べたスナックの数 (int型) (Input)
-    #> eat_counter  int 食べたスナックの数を更新し，出力します (int型) (Output)
+    ># eat_counter  int The number of snacks the user has eaten so far (Input)
+    #> eat_counter  int Updates and outputs the number of snacks eaten (Output)
     """
 
     def __init__(self):
-        """状態の結果，入力キーを定義します．"""
+        """Defines the outcomes and userdata keys for this state."""
         super().__init__(outcomes=['succeeded'],
                          input_keys=['eat_counter'],
                          output_keys=['eat_counter'])
 
     def execute(self, userdata):
-        # eat処理を開始します
+        # Execute the eating process
         sleep(1)
-        Logger.loginfo('スイーツを1個食べます！') # 食事をしたことをログに残します
-        userdata.eat_counter += 1 # eat_counterを更新します
-        Logger.loginfo('現時点では、スイーツを{}個食べました！'.format(userdata.eat_counter)) # 食べたスナックの数をログに残します
+        Logger.loginfo('Eating one piece of snack!') # Log the eating action
+        userdata.eat_counter += 1 # Update eat_counter
+        Logger.loginfo('I have eaten {} pieces of snack so far!'.format(userdata.eat_counter)) # Log the current count of snacks
 
-        return 'succeeded' # 'succeeded'という結果を返します
+        return 'succeeded' # Return the result 'succeeded'

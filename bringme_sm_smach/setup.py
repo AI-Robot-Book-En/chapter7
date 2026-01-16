@@ -16,7 +16,7 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='Masaki Ito',
+    maintainer='Jiahao Sim',
     maintainer_email='ai-robot-book@googlegroups.com',
     description='ROS2 package for the state machine of Bring Me task',
     license='Apache License 2.0',

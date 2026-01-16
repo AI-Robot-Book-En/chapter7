@@ -3,7 +3,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     return LaunchDescription([
-        # 起動したいノードを記述
+        # Define the nodes to be launched.
         Node(
             package='pseudo_node_action',
             executable='manipulation_node',

@@ -51,7 +51,7 @@ class BringmeActionBehaviorSM(Behavior):
     """
     Define Bringme Action Behavior.
 
-    Bringmeタスクのステートマシンの一例
+    An Example of a State Machine for the Bringme Task
 
     """
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright 2024 Keith Valentin
+# Copyright 2025 Keith Valentin
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,9 +23,12 @@
 ###########################################################
 
 """
-Define Sample Behavior.
+Define Advanced Sample State Machine.
 
-Created on Tue May 28 2024
+In this state machine, a new behavior is created by extending the previous
+sample to include a grasping state.
+
+Created on Wed Oct 29 2025
 @author: Keith Valentin
 """
 
@@ -36,73 +39,92 @@ from flexbe_core import ConcurrencyContainer
 from flexbe_core import Logger
 from flexbe_core import OperatableStateMachine
 from flexbe_core import PriorityContainer
+from flexbe_core import initialize_flexbe_core
 from sample_sm_flexbe_states.eat_state import EatState
+from sample_sm_flexbe_states.grasp_state import GraspState
 from sample_sm_flexbe_states.search_state import SearchState
 
 # Additional imports can be added inside the following tags
 # [MANUAL_IMPORT]
 
+
 # [/MANUAL_IMPORT]
 
 
-class SampleBehaviorSM(Behavior):
+class AdvancedSampleStateMachineSM(Behavior):
     """
-    Define Sample Behavior.
+    Define Advanced Sample State Machine.
 
-    FlexBEの基本を理解するためのステートマシンの一例
-
+    In this state machine, a new behavior is created by extending the previous
+    sample to include a grasping state.
     """
 
     def __init__(self, node):
         super().__init__()
-        self.name = 'Sample Behavior'
+        self.name = 'Advanced Sample State Machine'
 
         # parameters of this behavior
-        self.add_parameter('max_eat', 5)
+        self.add_parameter('max_eat', 1)
+
+        # Initialize ROS node information
+        initialize_flexbe_core(node)
 
         # references to used behaviors
-        OperatableStateMachine.initialize_ros(node)
-        ConcurrencyContainer.initialize_ros(node)
-        PriorityContainer.initialize_ros(node)
-        Logger.initialize(node)
-        EatState.initialize_ros(node)
-        SearchState.initialize_ros(node)
 
         # Additional initialization code can be added inside the following tags
         # [MANUAL_INIT]
+
 
         # [/MANUAL_INIT]
 
         # Behavior comments:
 
     def create(self):
-        # x:96 y:170
-        _state_machine = OperatableStateMachine(outcomes=['finished'])
+        """Create state machine."""
+        # Root state machine
+        # x:176 y:306, x:172 y:612
+        _state_machine = OperatableStateMachine(outcomes=['finished', 'failed'])
         _state_machine.userdata.max_eat = self.max_eat
         _state_machine.userdata.eat_counter = 0
 
         # Additional creation code can be added inside the following tags
         # [MANUAL_CREATE]
 
+
         # [/MANUAL_CREATE]
+
         with _state_machine:
-            # x:337 y:37
+            # x:320 y:100
             OperatableStateMachine.add('Search',
                                        SearchState(),
-                                       transitions={'succeeded': 'Eat', 'finished': 'finished'},
-                                       autonomy={'succeeded': Autonomy.Off, 'finished': Autonomy.Off},
-                                       remapping={'eat_counter': 'eat_counter', 'max_eat': 'max_eat'})
+                                       transitions={'succeeded': 'Grasp'  # 563 117 -1 -1 -1 -1
+                                                    , 'finished': 'finished'  # 259 225 -1 -1 -1 -1
+                                                    },
+                                       autonomy={'succeeded': Autonomy.Off,
+                                                 'finished': Autonomy.Off},
+                                       remapping={'eat_counter': 'eat_counter',
+                                                  'max_eat': 'max_eat'})
 
-            # x:338 y:141
+            # x:963 y:97
             OperatableStateMachine.add('Eat',
                                        EatState(),
-                                       transitions={'succeeded': 'Search'},
+                                       transitions={'succeeded': 'Search'  # 731 41 -1 -1 -1 -1
+                                                    },
                                        autonomy={'succeeded': Autonomy.Off},
                                        remapping={'eat_counter': 'eat_counter'})
+
+            # x:649 y:89
+            OperatableStateMachine.add('Grasp',
+                                       GraspState(),
+                                       transitions={'succeeded': 'Eat'  # 878 109 -1 -1 -1 -1
+                                                    , 'failed': 'Grasp'  # 724 188 -1 -1 -1 -1
+                                                    },
+                                       autonomy={'succeeded': Autonomy.Off, 'failed': Autonomy.Off})
 
         return _state_machine
 
     # Private functions can be added inside the following tags
     # [MANUAL_FUNC]
+
 
     # [/MANUAL_FUNC]
