@@ -19,7 +19,7 @@ This section explains the procedure to install this repository.
   ```console
   $ cd ~/airobot_ws/src/
   $ git clone -b 4.0.0 https://github.com/FlexBE/flexbe_behavior_engine.git
-  $ git clone https://github.com/AI-Robot-Book-Humble/flexbe_webui.git
+  $ git clone https://github.com/AI-Robot-Book-En/flexbe_webui.git
   ```
 
 4. Build the downloaded repositories.
