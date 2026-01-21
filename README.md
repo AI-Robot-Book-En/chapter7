@@ -11,8 +11,8 @@ This section explains the procedure to install this repository.
 
 1. Install the required ROS-related packages.
   ```console
-  $ sudo apt-get update
-  $ sudo apt-get install -y ros-humble-smach ros-humble-executive-smach
+  $ sudo apt update
+  $ sudo apt install -y ros-humble-smach ros-humble-executive-smach
   ```
 
 3. If you are using `FlexBE` for the first time, download `FlexBE Behavior Engine` and `FlexBE WebUI`.
